@@ -1,0 +1,46 @@
+#DFS
+
+flag = 0
+
+def dfsAlgorithm(graph,visitedVertices, src, search):
+    global flag
+    print(visitedVertices)
+    if src not in visitedVertices:
+        visitedVertices.append(src)
+        for y in graph[src]:
+            if (search == y):
+                flag = 1
+            dfsAlgorithm(graph,visitedVertices, y, search)
+    
+noOfVertices=eval(input("Enter No. of Vertices: "))
+vertice=[]
+for i in range(noOfVertices):
+    v=eval(input("Enter vertex "+str(i)+" : "))
+    vertice.append(v)
+
+vertices=[]
+for i in range(noOfVertices):
+  e=eval(input("Enter no of edges for vertex  "+str(i)+" : "))
+  a=[]
+  for j in range(e):
+    x=eval(input("Enter edges for vertex  "+str(i)+" : "))
+    a.append(x)
+  vertices.append(a)
+
+print(vertice)
+print(vertices)
+
+graph =dict(zip(vertice,vertices))
+print(graph)
+
+visitedVertices=[]
+src = eval(input("Enter source vertex: "))
+search=eval(input("Enter Value to search: "))
+
+print("DFS Sequence: ")
+dfsAlgorithm(graph,visitedVertices,src, search)
+print(visitedVertices)
+if(flag == 1):
+    print(search, "Found")
+else:
+    print(search, "Not found")

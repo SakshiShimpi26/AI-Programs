@@ -1,0 +1,58 @@
+#UCS
+
+from queue import PriorityQueue
+
+def ucsAlgorithm(graph,visitedVertices,dest,newSrc):
+  queue=PriorityQueue()
+  cost=0
+  queue.put(newSrc)
+  visitedVertices.append(newSrc[1])
+  while not queue.empty():
+    val=queue.get()
+    #print("Val"+str(val))
+    if val[1]!=dest:
+      cost=cost+val[0]
+      print("Cost"+str(cost))
+      for i in graph[val[1]]:
+        #print("i"+str(i))
+        if i[1] not in visitedVertices:
+          visitedVertices.append(i[1])
+          print("Visited:"+str(visitedVertices))
+          queue.put(i)
+          #print(i)
+    else:
+      s=queue.get()
+      cost=s[0]
+      while not queue.empty():
+        queue.get()
+  return cost
+
+noOfVertices=eval(input("Enter No. of Vertices: "))
+vertice=[]
+for i in range(noOfVertices):
+    v=eval(input("Enter vertex "+str(i)+" : "))
+    vertice.append(v)
+
+
+vertices=[]
+for i in range(noOfVertices):
+  e=eval(input("Enter no of edges for vertex  "+str(i)+" : "))
+  a=[]
+  for j in range(e):
+    x=eval(input("Enter edge for vertex : "))
+    c=eval(input("Enter cost of vertex :  "))
+    t=c,x
+    a.append(t)
+  vertices.append(a)
+
+print(vertice)
+print(vertices)
+
+graph =dict(zip(vertice,vertices))
+print(graph)
+
+visitedVertices=[]
+src = eval(input("Enter source vertex: "))
+dest=eval(input("Enter dest vertex: "))
+newSrc=(0,src)
+print(ucsAlgorithm(graph,visitedVertices,dest,newSrc))

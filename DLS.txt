@@ -1,0 +1,51 @@
+#DLS
+
+
+def dfsAlgorithm(graph,visitedVertices,src,count,limit):
+    print(visitedVertices)
+    print("count: ", count)
+    if src not in visitedVertices:
+        print("source: ", src)
+        visitedVertices.append(src)
+        print("Vistieda:",visitedVertices)
+        #count=count+1
+        for y in graph[src]:
+            print("value of y: ", y)
+            if count != limit:
+                dfsAlgorithm(graph,visitedVertices, y,count+1,limit)
+    
+noOfVertices=eval(input("Enter No. of Vertices: "))
+vertice=[]
+for i in range(noOfVertices):
+    v=eval(input("Enter vertex "+str(i)+" : "))
+    vertice.append(v)
+
+vertices=[]
+for i in range(noOfVertices):
+  e=eval(input("Enter no of edges for vertex  "+str(i)+" : "))
+  a=[]
+  for j in range(e):
+    x=eval(input("Enter edges for vertex  "+str(i)+" : "))
+    a.append(x)
+  vertices.append(a)
+
+print(vertice)
+print(vertices)
+
+graph =dict(zip(vertice,vertices))
+print(graph)
+
+visitedVertices=[]
+src = eval(input("Enter source vertex: "))
+search=eval(input("Enter Value to search: "))
+
+count= 0;
+limit=eval(input("Enter limit: "))
+
+print("DLS Sequence: ")
+dfsAlgorithm(graph,visitedVertices,src,count,limit)
+print(visitedVertices)
+if(search in visitedVertices):
+    print(search, "Found")
+else:
+    print(search, "Not found")
